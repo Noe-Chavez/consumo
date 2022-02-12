@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface WebService {
 
     @GET("apod")
-    suspend fun getAstronomyPictureLastEightDays(
+    suspend fun getAstronomyPictureLastNDays(
         @Query("api_key") apiKey: String,
         @Query("start_date") startDate: String
     ): List<ImageEntity>

@@ -19,4 +19,13 @@
             android:id="@+id/action_homeFragment_to_imageDetailFragment"
             app:destination="@id/imageDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/findSpecificDateFragment"
+        android:name="co.soyyo.consumo.ui.FindSpecificDateFragment"
+        android:label="fragment_find_specific_date"
+        tools:layout="@layout/fragment_find_specific_date" >
+        <action
+            android:id="@+id/action_findSpecificDateFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

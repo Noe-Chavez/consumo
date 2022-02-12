@@ -9,10 +9,10 @@ import co.soyyo.consumo.repository.ImageRepository
 
 class ImageViewModel(private val repo: ImageRepository) : ViewModel() {
 
-    fun getAstronomyPictureLastEightDays() = liveData(Dispatchers.IO) {
+    fun getAstronomyPictureLastNDays(pastDays: Long) = liveData(Dispatchers.IO) {
         emit(Result.Loading())
         try {
-            emit(Result.Success(repo.getAstronomyPictureLastEightDays()))
+            emit(Result.Success(repo.getAstronomyPictureLastNDays(pastDays)))
         } catch (e: Exception) {
             emit(Result.Failure(e))
         }

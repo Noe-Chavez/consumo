@@ -14,6 +14,7 @@ import co.soyyo.consumo.databinding.FragmentHomeBinding
 import co.soyyo.consumo.data.model.ImageEntity
 import co.soyyo.consumo.data.remote.ImageDataSource
 import co.soyyo.consumo.presentation.CommunicationBetweenFragmentsHomeAndDetails
+import co.soyyo.consumo.presentation.CommunicationBetweenFragmentsSearchAndHome
 import co.soyyo.consumo.presentation.ImageViewModel
 import co.soyyo.consumo.presentation.ImageViewModelFactory
 import co.soyyo.consumo.repository.ImageRepositoryImpl
@@ -25,6 +26,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), ImageAdapter.OnClickListe
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
 
     private val communicationBetweenFragments: CommunicationBetweenFragmentsHomeAndDetails by activityViewModels()
+    private val communicationBetweenFragmentsSearch: CommunicationBetweenFragmentsSearchAndHome by activityViewModels()
 
     private val viewModel by viewModels<ImageViewModel> {
         ImageViewModelFactory(ImageRepositoryImpl(ImageDataSource(RetrofitClient.webService)))
@@ -37,7 +39,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), ImageAdapter.OnClickListe
 
         fragmentHomeBinding = FragmentHomeBinding.bind(view)
 
-        viewModel.getAstronomyPictureLastEightDays().observe(viewLifecycleOwner, Observer { result ->
+        Log.d("DESDE_SEARCH", "${communicationBetweenFragmentsSearch.getDate()}")
+
+        viewModel.getAstronomyPictureLastNDays(8L).observe(viewLifecycleOwner, Observer { result ->
             when(result) {
                 is Result.Loading -> {
                     fragmentHomeBinding.progressBar.visibility = View.VISIBLE
