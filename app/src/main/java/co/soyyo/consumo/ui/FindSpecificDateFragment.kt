@@ -24,12 +24,32 @@ class FindSpecificDateFragment : Fragment(R.layout.fragment_find_specific_date) 
         fragmentFindSpecificDateBinding = FragmentFindSpecificDateBinding.bind(view)
 
         fragmentFindSpecificDateBinding.materialButtonSearch.setOnClickListener {
-            val text: String = fragmentFindSpecificDateBinding.editTextDate.text.toString()
-            communicationBetweenFragmentsSearch.setDate(text)
-            findNavController().navigate(R.id.action_findSpecificDateFragment_to_homeFragment)
-            Log.d("TESTButton", "${fragmentFindSpecificDateBinding.editTextDate.text}")
+            val date: String = fragmentFindSpecificDateBinding.textInputEditTextDate.text.toString()
+            if (validateFields(date)) {
+                communicationBetweenFragmentsSearch.setDate(date)
+                findNavController().navigate(R.id.action_findSpecificDateFragment_to_homeFragment)
+            }
+            Log.d("TESTButton",
+                fragmentFindSpecificDateBinding.textInputEditTextDate.text.toString()
+            )
         }
 
+    }
+
+    private fun validateFields(date: String): Boolean {
+
+        var isValid = true
+
+        if (date.isEmpty())
+        {
+            fragmentFindSpecificDateBinding.textInputLayoutDate.error = getString(R.string.error_text_input_empty_title)
+            fragmentFindSpecificDateBinding.textInputLayoutDate.requestFocus()
+            isValid = false
+        } else {
+            fragmentFindSpecificDateBinding.textInputLayoutDate.error = null
+        }
+
+        return isValid
     }
 
 }

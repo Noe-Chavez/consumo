@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="co.soyyo.consumo.AboutFragment"
+        android:name="co.soyyo.consumo.ui.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
 </navigation>

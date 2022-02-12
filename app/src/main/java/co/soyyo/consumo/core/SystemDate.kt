@@ -1,8 +1,10 @@
 package co.soyyo.consumo.core
 
 import android.os.Build
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class SystemDate {
 
@@ -20,6 +22,14 @@ class SystemDate {
             }
 
             return "Build.VERSION.SDK_INT"
+        }
+
+        fun getDaysDifference(searchDate: String): Long? {
+            val dateFormat: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+            var dateStart: Date = dateFormat.parse(searchDate)
+            var currentDate: Date = Date(System.currentTimeMillis())
+            val milisecondsByDay = 86400000L
+            return (currentDate.time - dateStart.time) / milisecondsByDay
         }
 
     }
