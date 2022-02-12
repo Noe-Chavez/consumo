@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import co.soyyo.consumo.R
-import co.soyyo.consumo.entities.ImageEntity
+import co.soyyo.consumo.data.model.ImageEntity
 import com.bumptech.glide.Glide
 
 class ImageAdapter(
