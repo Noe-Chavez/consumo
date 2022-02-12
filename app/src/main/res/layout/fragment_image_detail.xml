@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ImageDetailFragment">
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_background"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/image_title"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frame_layout"
+        tools:text="Test title, can be very long..." />
+
+    <TextView
+        android:id="@+id/text_view_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_title"
+        tools:text="0000-00-00" />
+
+    <TextView
+        android:id="@+id/text_view_copyright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_date"
+        tools:text="Noé Baldemar Chávez Morelos" />
+
+    <TextView
+        android:id="@+id/text_view_explanation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_copyright"
+        tools:text="Lorem ipsum dolor sit amet consectetur adipiscing elit ut, semper maecenas tortor orci pretium euismod neque feugiat, ornare etiam malesuada suspendisse fermentum at mus. Lectus lacinia mus suscipit hac varius cras dis commodo, mi sodales quisque elementum sociis eleifend. Arcu dignissim aenean lacinia non netus sem platea id natoque cum lacus, imperdiet vivamus nulla dis orci nascetur erat curae sodales.
+
+        Vulputate viverra ligula porttitor commodo varius lobortis facilisis cubilia accumsan facilisi, parturient metus sapien felis in est eget risus sagittis, pretium ultricies mi nullam tristique nostra curabitur aptent dui. Nisl dictum curae dictumst curabitur vel phasellus varius egestas integer, mattis felis magnis est interdum fusce vehicula. Mus dignissim congue mi vestibulum curabitur sociosqu augue eu, lectus volutpat tincidunt cubilia nostra quam ad posuere, justo imperdiet maecenas luctus pulvinar suspendisse inceptos." />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
