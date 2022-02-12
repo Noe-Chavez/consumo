@@ -34,7 +34,10 @@ class ImageAdapter(
             .into(holder.imageViewImage)
         holder.textViewTitle.text = imageEntity.title
         holder.textViewDate.text = imageEntity.date
-        holder.textViewCopyright.text = imageEntity.copyright
+        if (imageEntity.copyright.isNullOrEmpty())
+            holder.textViewCopyright.text = context.getString(R.string.copyright_free)
+        else
+            holder.textViewCopyright.text = imageEntity.copyright
     }
 
     override fun getItemCount() = listImage.size
