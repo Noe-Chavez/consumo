@@ -5,4 +5,6 @@
         android:icon="@drawable/ic_baseline_find_replace_24"
         android:title="@string/search_image_title"
         app:showAsAction="ifRoom"/>
+    <item android:id="@+id/aboutFragment"
+        android:title="@string/about_title_item"/>
 </menu>

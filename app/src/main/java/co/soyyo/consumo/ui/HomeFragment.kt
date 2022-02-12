@@ -44,17 +44,17 @@ class HomeFragment : Fragment(R.layout.fragment_home), ImageAdapter.OnClickListe
         viewModel.getAstronomyPictureLastNDays(8L).observe(viewLifecycleOwner, Observer { result ->
             when(result) {
                 is Result.Loading -> {
-                    fragmentHomeBinding.progressBar.visibility = View.VISIBLE
+                    fragmentHomeBinding.lottieAnimationWait.visibility = View.VISIBLE
                     Log.d("LiveData", "Loading..")
                 }
                 is Result.Success -> {
-                    fragmentHomeBinding.progressBar.visibility = View.GONE
+                    fragmentHomeBinding.lottieAnimationWait.visibility = View.GONE
                     listImages = result.data
                     fragmentHomeBinding.recyclerViewImages.adapter = ImageAdapter(listImages, this)
                     Log.d("LiveData", " Size: ${result.data.size} - Data: ${result.data}")
                 }
                 is Result.Failure -> {
-                    fragmentHomeBinding.progressBar.visibility = View.GONE
+                    fragmentHomeBinding.lottieAnimationWait.visibility = View.GONE
                     Log.d("LiveData", "Error: ${result.exception}")
                 }
             }

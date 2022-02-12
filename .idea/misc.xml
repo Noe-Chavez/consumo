@@ -6,11 +6,13 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.20092592592592592" />
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.1085" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165625" />
+        <entry key="app/src/main/res/layout/fragment_about.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/layout/fragment_find_specific_date.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/layout/fragment_image_detail.xml" value="0.22" />
         <entry key="app/src/main/res/layout/image_item.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/menu/top_app_bar.xml" value="0.18072916666666666" />
+        <entry key="app/src/main/res/menu/top_app_bar_menu.xml" value="0.18072916666666666" />
       </map>
     </option>
   </component>

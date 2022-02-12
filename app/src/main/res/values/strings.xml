@@ -6,4 +6,9 @@
     <string name="search_image_title">search image by specific dates</string>
     <string name="select_a_date">select a date yyyy-MM-dd.</string>
     <string name="search_button">search</string>
+    <string name="mail_developer">noe_fam_chavez@yahoo.com.mx</string>
+    <string name="name_developer">Chávez Morelos Noé Baldemar</string>
+    <string name="suggestions">To communicate an error or problem in the application or any suggestion, please send it to the developer\'s email.</string>
+    <string name="license_app">GNU GPLv3 License</string>
+    <string name="about_title_item">about</string>
 </resources>

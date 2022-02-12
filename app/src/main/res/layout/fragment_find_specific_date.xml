@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.FindSpecificDateFragment">
 
-    <ImageView
-        android:id="@+id/image_view_calendar"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_search"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_launcher_background"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +29,7 @@
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_view_calendar" />
+        app:layout_constraintTop_toBottomOf="@+id/lottie_animation_search" />
 
     <EditText
         android:id="@+id/editTextDate"
@@ -40,7 +42,9 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_title" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_title"
+        tools:ignore="TextFields"
+        android:autofillHints="" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/material_button_search"
