@@ -25,6 +25,16 @@
             android:layout_height="match_parent"
             android:background="@drawable/gradient"/>
 
+        <ImageView
+            android:id="@+id/button_download_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/download"
+            style="?selectableItemBackground"
+            app:tint="@color/white"
+            android:layout_gravity="bottom|end" />
+
     </FrameLayout>
 
     <TextView
