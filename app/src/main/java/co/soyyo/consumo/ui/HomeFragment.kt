@@ -22,10 +22,6 @@ import co.soyyo.consumo.presentation.ImageViewModelFactory
 import co.soyyo.consumo.repository.ImageRepositoryImpl
 import co.soyyo.consumo.repository.RetrofitClient
 import co.soyyo.consumo.ui.adapter.ImageAdapter
-import java.text.SimpleDateFormat
-import java.time.temporal.ChronoUnit
-import java.util.Date
-import javax.xml.datatype.DatatypeConstants.DAYS
 
 class HomeFragment : Fragment(R.layout.fragment_home), ImageAdapter.OnClickListener {
 

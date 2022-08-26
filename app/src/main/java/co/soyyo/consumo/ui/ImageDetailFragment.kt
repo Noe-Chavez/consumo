@@ -6,28 +6,32 @@ import android.os.Bundle
 import android.os.Environment
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import co.soyyo.consumo.R
 import co.soyyo.consumo.core.GlideSettings
+import co.soyyo.consumo.core.Result
 import co.soyyo.consumo.data.model.ImageEntity
 import co.soyyo.consumo.databinding.FragmentImageDetailBinding
-import co.soyyo.consumo.presentation.CommunicationBetweenFragmentsHomeAndDetails
-import okhttp3.*
-import java.io.File
-import java.io.IOException
+import co.soyyo.consumo.presentation.*
+import co.soyyo.consumo.repository.ImageDownloadToStorageService
+import co.soyyo.consumo.ui.adapter.ImageAdapter
 
 class ImageDetailFragment : Fragment(R.layout.fragment_image_detail) {
 
     private val communicationBetweenFragments: CommunicationBetweenFragmentsHomeAndDetails by activityViewModels()
 
-    private lateinit var fragmentImageDetailBinding: FragmentImageDetailBinding
+    private val downloadImageViewModel by viewModels<DownloadImageViewModel> {
+        DownloadImageViewModelFactory(ImageDownloadToStorageService())
+    }
 
-    private lateinit var okHttpClient: OkHttpClient
+    private lateinit var fragmentImageDetailBinding: FragmentImageDetailBinding
 
     companion object {
         const val REQUEST_CODE = 200
@@ -37,8 +41,6 @@ class ImageDetailFragment : Fragment(R.layout.fragment_image_detail) {
         super.onViewCreated(view, savedInstanceState)
 
         fragmentImageDetailBinding = FragmentImageDetailBinding.bind(view)
-
-        okHttpClient = OkHttpClient.Builder().build()
 
         var url = ""
 
@@ -87,7 +89,22 @@ class ImageDetailFragment : Fragment(R.layout.fragment_image_detail) {
         }
 
         if (permissionStorageRead == PackageManager.PERMISSION_GRANTED || permissionStorageWrite == PackageManager.PERMISSION_GRANTED) {
-            downloadImage(url)
+
+            downloadImageViewModel.downloadImage(url).observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        Log.d("LiveData", "Loading..")
+                    }
+                    is Result.Success -> {
+                        Toast.makeText(context, "Imagen guardada en el dispositivo", Toast.LENGTH_SHORT).show()
+                        Log.d("LiveData", " Size: ${result.data} - Data: ${result.data}")
+                    }
+                    is Result.Failure -> {
+                        Log.d("LiveData", "Error: ${result.exception}")
+                    }
+                }
+            }
+
             Log.d("permission", "Permiso concedido")
         } else {
             activity?.let {
@@ -98,53 +115,5 @@ class ImageDetailFragment : Fragment(R.layout.fragment_image_detail) {
                 )
             }
         }
-    }
-
-    private fun downloadImage(imageUrl: String) {
-
-        val request = Request.Builder()
-            .url(imageUrl)
-            .build()
-
-        okHttpClient.newCall(request).enqueue(object : Callback {
-
-            override fun onFailure(call: Call, e: IOException) {
-                Log.d("Error", "Se produjo un error en la descarga...");
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-
-                if (!response.isSuccessful) {
-                    Log.d("Error", "Se produjo un error en la descarga...");
-                    return
-                }
-
-                response.body?.let {
-                    try {
-                        // Convert response body to byte array
-                        val imageByteArray = it.byteStream().readBytes()
-
-                        // Split image url so we can get the image name
-                        val words = imageUrl.split("/").toTypedArray()
-
-                        // Get the image name
-                        val imageName = words.last()
-
-                        // Init pathName (Downloads Directory)
-                        val pathName = "${Environment.getExternalStorageDirectory()}/${Environment.DIRECTORY_DOWNLOADS}"
-
-                        // Create New file for the image
-                        val file = File(pathName, imageName)
-
-                        // Set byteArray To Image File
-                        file.writeBytes(imageByteArray)
-                        Log.d("Successful", "Descarga exitosa")
-                    } catch(e: IOException) {
-                        Log.d("Error", "Error: $e")
-                        e.printStackTrace()
-                    }
-                }
-            }
-        })
     }
 }

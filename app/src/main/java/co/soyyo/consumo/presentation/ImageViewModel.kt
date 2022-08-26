@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import kotlinx.coroutines.Dispatchers
 import co.soyyo.consumo.core.Result
-import co.soyyo.consumo.repository.ImageRepository
+import co.soyyo.consumo.repository.ImageRepositoryImpl
 
-class ImageViewModel(private val repo: ImageRepository) : ViewModel() {
+class ImageViewModel(private val repo: ImageRepositoryImpl) : ViewModel() {
 
     fun getAstronomyPictureLastNDays(pastDays: Long) = liveData(Dispatchers.IO) {
         emit(Result.Loading())
@@ -20,9 +20,9 @@ class ImageViewModel(private val repo: ImageRepository) : ViewModel() {
 
 }
 
-class ImageViewModelFactory(private val repo: ImageRepository) : ViewModelProvider.NewInstanceFactory() {
+class ImageViewModelFactory(private val repo: ImageRepositoryImpl) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return modelClass.getConstructor(ImageRepository::class.java).newInstance(repo)
+        return modelClass.getConstructor(ImageRepositoryImpl::class.java).newInstance(repo)
     }
 }
 
