@@ -12,7 +12,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import co.soyyo.consumo.R
 import co.soyyo.consumo.core.GlideSettings
 import co.soyyo.consumo.data.model.ImageEntity
@@ -45,16 +44,16 @@ class ImageDetailFragment : Fragment(R.layout.fragment_image_detail) {
 
         var url = ""
 
-        communicationBetweenFragments.getImage().observe(viewLifecycleOwner, Observer { image ->
+        communicationBetweenFragments.getImage().observe(viewLifecycleOwner) { image ->
             url = image.url
             setInformationToComponents(image)
             Log.d("communication", "element $image")
-        })
+        }
 
         fragmentImageDetailBinding.buttonDownloadImage.setOnClickListener {
 
             setPermissionStorage(url)
-            Log.d("url", "$url")
+            Log.d("url", url)
         }
 
     }
@@ -69,7 +68,7 @@ class ImageDetailFragment : Fragment(R.layout.fragment_image_detail) {
         fragmentImageDetailBinding.textViewDate.text = imageEntity.date
         fragmentImageDetailBinding.textViewExplanation.movementMethod = ScrollingMovementMethod()
         fragmentImageDetailBinding.textViewExplanation.text = imageEntity.explanation
-        if (imageEntity.copyright.isNullOrEmpty())
+        if (imageEntity.copyright.isEmpty())
             fragmentImageDetailBinding.textViewCopyright.text =
                 requireContext().getString(R.string.copyright_free)
         else

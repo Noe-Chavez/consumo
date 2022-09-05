@@ -47,8 +47,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), ImageAdapter.OnClickListe
             previousDays = SystemDate.getDaysDifference(searchDate)
         }
 
-        viewModel.getAstronomyPictureLastNDays(previousDays ?: 8L ).observe(viewLifecycleOwner, Observer { result ->
-            when(result) {
+        viewModel.getAstronomyPictureLastNDays(previousDays ?: 8L ).observe(viewLifecycleOwner) { result ->
+            when (result) {
                 is Result.Loading -> {
                     fragmentHomeBinding.lottieAnimationWait.visibility = View.VISIBLE
                     Log.d("LiveData", "Loading..")
@@ -64,7 +64,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), ImageAdapter.OnClickListe
                     Log.d("LiveData", "Error: ${result.exception}")
                 }
             }
-        })
+        }
 
     }
 

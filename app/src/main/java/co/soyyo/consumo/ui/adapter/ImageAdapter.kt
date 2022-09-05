@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import co.soyyo.consumo.R
+import co.soyyo.consumo.application.AppConstants
 import co.soyyo.consumo.core.GlideSettings
 import co.soyyo.consumo.data.model.ImageEntity
 
@@ -51,7 +52,7 @@ class ImageAdapter(
 
     override fun getItemCount() = listImage.size
 
-    inner class HomeScreenViewHolder(private val itemView: View) :
+    inner class HomeScreenViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         val imageViewImage: ImageView = itemView.findViewById(R.id.card_view_image)
         val textViewTitle: TextView = itemView.findViewById(R.id.card_view_title)
