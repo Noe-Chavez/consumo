@@ -1,18 +1,18 @@
-package co.soyyo.consumo.repository
+package co.soyyo.consumo.data.remote
 
 import android.os.Environment
 import android.util.Log
 import okhttp3.*
-import okhttp3.internal.wait
 import java.io.File
 import java.io.IOException
 
-class ImageDownloadToStorageService {
+class ImageDownloadToStorageDataSource {
 
     suspend fun downloadImage(url: String) {
+
         val okHttpClient: OkHttpClient = OkHttpClient.Builder().build()
         val request = Request.Builder().url(url).build()
-        val result = okHttpClient.newCall(request).enqueue(object : Callback {
+        okHttpClient.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.d("Error", "Se produjo un error en la descarga...");
             }
@@ -50,6 +50,7 @@ class ImageDownloadToStorageService {
             }
 
         })
+
     }
 
 }

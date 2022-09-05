@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import co.soyyo.consumo.core.Result
-import co.soyyo.consumo.repository.ImageDownloadToStorageService
+import co.soyyo.consumo.repository.ImageDownloadToStorageRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 
-class DownloadImageViewModel(private val repo: ImageDownloadToStorageService) : ViewModel() {
+class DownloadImageViewModel(private val repo: ImageDownloadToStorageRepositoryImpl) : ViewModel() {
 
     fun downloadImage(url: String) = liveData(Dispatchers.IO) {
         emit(Result.Loading())
@@ -20,8 +20,8 @@ class DownloadImageViewModel(private val repo: ImageDownloadToStorageService) : 
 
 }
 
-class DownloadImageViewModelFactory(private val repo: ImageDownloadToStorageService) : ViewModelProvider.NewInstanceFactory() {
+class DownloadImageViewModelFactory(private val repo: ImageDownloadToStorageRepositoryImpl) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return modelClass.getConstructor(ImageDownloadToStorageService::class.java).newInstance(repo)
+        return modelClass.getConstructor(ImageDownloadToStorageRepositoryImpl::class.java).newInstance(repo)
     }
 }

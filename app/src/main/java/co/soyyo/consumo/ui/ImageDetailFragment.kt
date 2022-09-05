@@ -3,7 +3,6 @@ package co.soyyo.consumo.ui
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.Environment
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
@@ -16,19 +15,21 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import co.soyyo.consumo.R
 import co.soyyo.consumo.core.GlideSettings
-import co.soyyo.consumo.core.Result
 import co.soyyo.consumo.data.model.ImageEntity
 import co.soyyo.consumo.databinding.FragmentImageDetailBinding
 import co.soyyo.consumo.presentation.*
-import co.soyyo.consumo.repository.ImageDownloadToStorageService
-import co.soyyo.consumo.ui.adapter.ImageAdapter
+import co.soyyo.consumo.repository.ImageDownloadToStorageRepositoryImpl
+import co.soyyo.consumo.core.*
+import co.soyyo.consumo.data.remote.ImageDownloadToStorageDataSource
 
 class ImageDetailFragment : Fragment(R.layout.fragment_image_detail) {
 
     private val communicationBetweenFragments: CommunicationBetweenFragmentsHomeAndDetails by activityViewModels()
 
     private val downloadImageViewModel by viewModels<DownloadImageViewModel> {
-        DownloadImageViewModelFactory(ImageDownloadToStorageService())
+        DownloadImageViewModelFactory(ImageDownloadToStorageRepositoryImpl(
+            ImageDownloadToStorageDataSource()
+        ))
     }
 
     private lateinit var fragmentImageDetailBinding: FragmentImageDetailBinding
@@ -51,6 +52,7 @@ class ImageDetailFragment : Fragment(R.layout.fragment_image_detail) {
         })
 
         fragmentImageDetailBinding.buttonDownloadImage.setOnClickListener {
+
             setPermissionStorage(url)
             Log.d("url", "$url")
         }
@@ -92,7 +94,8 @@ class ImageDetailFragment : Fragment(R.layout.fragment_image_detail) {
 
             downloadImageViewModel.downloadImage(url).observe(viewLifecycleOwner) { result ->
                 when (result) {
-                    is Result.Loading -> {
+                    is Result.Loading
+                    -> {
                         Log.d("LiveData", "Loading..")
                     }
                     is Result.Success -> {
