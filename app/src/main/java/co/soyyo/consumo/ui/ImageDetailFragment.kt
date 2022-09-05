@@ -83,9 +83,9 @@ class ImageDetailFragment : Fragment(R.layout.fragment_image_detail) {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
             )
         }
-        val permissionStorageRead = context?.let {
+        val permissionStorageRead = context?.let { context ->
             ContextCompat.checkSelfPermission(
-                it,
+                context,
                 Manifest.permission.READ_EXTERNAL_STORAGE
             )
         }
