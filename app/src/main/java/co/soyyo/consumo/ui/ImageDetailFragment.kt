@@ -68,7 +68,7 @@ class ImageDetailFragment : Fragment(R.layout.fragment_image_detail) {
         fragmentImageDetailBinding.textViewDate.text = imageEntity.date
         fragmentImageDetailBinding.textViewExplanation.movementMethod = ScrollingMovementMethod()
         fragmentImageDetailBinding.textViewExplanation.text = imageEntity.explanation
-        if (imageEntity.copyright.isEmpty())
+        if (imageEntity.copyright.isNullOrEmpty())
             fragmentImageDetailBinding.textViewCopyright.text =
                 requireContext().getString(R.string.copyright_free)
         else
