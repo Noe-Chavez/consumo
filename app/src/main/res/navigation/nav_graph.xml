@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/imageDetailFragment"
-        android:name="co.soyyo.consumo.ui.ImageDetailFragment"
+        android:name="co.soyyo.cosmos.ui.ImageDetailFragment"
         android:label="fragment_image_detail"
         tools:layout="@layout/fragment_image_detail" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="co.soyyo.consumo.ui.HomeFragment"
+        android:name="co.soyyo.cosmos.ui.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/findSpecificDateFragment"
-        android:name="co.soyyo.consumo.ui.FindSpecificDateFragment"
+        android:name="co.soyyo.cosmos.ui.FindSpecificDateFragment"
         android:label="fragment_find_specific_date"
         tools:layout="@layout/fragment_find_specific_date" >
         <action
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="co.soyyo.consumo.ui.AboutFragment"
+        android:name="co.soyyo.cosmos.ui.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
 </navigation>
